@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script src='./jquery.min.js'></script>
+    <!-- <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> -->
+    <title>Document</title>
+</head>
+<body>
+    <div id='main' style='width:800px;height:800px'></div>
+    <script type="text/javascript">
+ 
+ var main=document.getElementById('main');
+     var myChart=echarts.init(main);
+     var myOpt={
+        backgroundColor: '#fff',
+        color: ['#fc3f3f','#1d79da'],
+        title:{
+            show:true,
+            text:'2018/07/05',
+            right:0,
+            top:0,
+            z:3,
+            textStyle:{
+                color:'#333',
+                fontFamily:"PingFangSC-Regular",
+                fontWeight:"normal",
+                fontSize:12
+            }
+        },
+        grid:{//网格
+            height:100,
+            // width:"100%",
+            top:50,
+            right:0,
+        },
+        xAxis: {
+            type: 'category',
+            axisTick: {
+                show:false,
+                alignWithLabel: true,
+                length:0
+            },
+            axisLabel:{//x坐标轴刻度标签
+                color:"#333",
+                fontSize:10,
+               // showMinLabel:true,//是否显示最小 tick 的 label
+                //showMaxLabel:true,//最小和最大不可同时显示设 因为当x轴只剩一个标签时 会显示不出来
+                interval:0,// 0 强制显示所有标签。1隔一个标签显示一个标签2，隔两标签显示1个标签，以此类推
+                rotate:-90//刻度标签旋转的角度，在类目轴的类目标签显示不下时可通过旋转防止标签重叠。-90 度到 90 度（默认0）
+            },
+            axisLine:{
+                show:true,//显示坐标轴线
+                onZero:true,
+                lineStyle:{
+                    color:'#bcbcbc',
+                    type:'solid'
+                }
+            },
+            data:["睿易贷","云易贷","我想贷","随便贷","有趣贷","随意贷","云想贷","你想贷","睿可贷","有可贷"]
+        },
+        yAxis:[
+             {
+                type: 'value',
+                name:'单',
+                nameLocation:'end',
+                nameTextStyle:{
+                    color:'#fc3f3f',
+                    align:'left'
+ 
+                },
+                    scale:false,//显示零刻度
+                    axisLabel: {
+                        formatter: '{value} ',//单
+                        color:'#fc3f3f',
+                        fontSize:12
+                    },
+                    axisTick:{ //坐标轴刻度
+                        show:false,
+                        length:10,
+ 
+                    },
+                    axisLine:{
+                        show:true,//显示坐标轴线
+                        onZero:true,
+                        lineStyle:{
+                            color:'#bcbcbc',
+                            type:'solid'
+                        }
+                    },
+                    splitLine:{ //坐标轴在 grid 区域中的分隔区
+                        lineStyle:{
+                            type:'solid',
+                            color:'#ededed'
+                        }
+                    },
+                    splitArea:{
+                        show:true,
+                        areaStyle:{
+                            color:['#fff','#fff']
+                        }
+                    }
+                },
+                {
+                    splitLine:{show: false},
+                    type: 'value'
+                }
+        ],
+        // dataZoom:[//缩放
+        //     {
+        //         type: 'slider',//对应第一个y轴
+        //         show: false,
+        //         start: 0,//%
+        //         end: 100,
+        //         // handleSize: 8
+        //     },
+        //     {
+        //         type: 'inside',//区域缩放
+        //         start:0,
+        //         end: 100
+        //     },
+        //     {
+        //         type: 'slider',
+        //         show: false,
+        //         yAxisIndex: 1,//第二个y轴
+        //         filterMode: 'empty',
+        //         width: 12,
+        //         height: '70%',
+        //         // handleSize: 8,
+        //         showDataShadow: false,
+        //         left: '93%'
+        //     }
+        // ],
+        series : [
+            
+             {
+                type:'line',//折线图
+                 data:[100,15,1,3,0,5,150,5,0,7],
+                yAxisIndex:0,
+                connectNulls:true,
+                smooth: "none",//拐点样式
+                lineStyle:{
+                    width:1,
+                    type:'solid'
+                }
+            },
+            {
+                type:'bar',//柱状图
+                data:[600,170000,700,6,800,6000,1700,70,600,8],
+                 yAxisIndex:1,
+                itemStyle:{//每个柱子的样式
+                    normal: {
+                        barBorderRadius: [5, 5, 0, 0],//
+                        label: {//标签
+                            show: true,
+                            position: 'top',
+                            textStyle: {
+                                color: '#333',
+                                fontSize:12
+ 
+                            },
+                            formatter:function(params){//内容 params柱子的参数
+                                if(params.value==0){
+                                    return '';
+                                }else
+                                {
+                                    return params.value+"万";
+                                }
+                            }
+                        }
+                    }
+                },
+                // barWidth:15,//当设置dataZoom缩放 宽度也自适应时 不能设置宽度
+                  barMaxWidth:40,//最大宽度 
+                // barMinWidth:10,
+                animationDurationUpdate: 1200//数据更新动画的时长。
+            },
+        ]
+    };
+    myChart.setOption(myOpt);
+
+    </script>
+</body>
+</html>

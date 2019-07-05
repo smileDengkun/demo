@@ -1,0 +1,47 @@
+.main{
+  display:flex;
+  width:80%;
+  margin:50px auto
+}
+.main>div{
+  width:20%;
+}
+.main>div:first-child{
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-name: fadeInUp;
+}
+.second{
+  animation-duration: 2s;
+  animation-delay: 0.2s;
+  animation-name: fadeInUp;
+}
+.third{
+  animation-duration: 2s;
+  animation-delay: 0.8s;
+  animation-name: fadeInUp;
+}
+.main>div:last-child{
+  animation-duration: 2s;
+  animation-delay: 1.2s;
+  animation-name: fadeInUp;
+}
+.main div img{
+  width:100%
+}
+@keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(20px);
+      -ms-transform: translateY(20px);
+      transform: translateY(20px);
+    }
+  
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+      transform: translateY(0);
+    }
+  }
+  
